@@ -12,20 +12,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class BackgroundTask_POST extends AsyncTask<Void,Void,Void> {
-    String duongdan = BAI2.SERVER_NAME;
+public class BackgroundTask_POST_BAI3 extends AsyncTask<String,Void,Void> {
+    String duongdan = BAI3.SERVER_NAME;
    TextView tvResult;
-   String edWidth,edLength;
+   String edCanh;
    String str;
    ProgressDialog pDiaLog;
    Context context;
 
-    public BackgroundTask_POST(TextView tvResult, String edWidth, String edLength, Context context) {
+    public BackgroundTask_POST_BAI3(TextView tvResult, Context context) {
         this.tvResult = tvResult;
-        this.edWidth = edWidth;
-        this.edLength = edLength;
         this.context = context;
     }
+
+
 
     @Override
     protected void onPreExecute() {
@@ -38,12 +38,12 @@ public class BackgroundTask_POST extends AsyncTask<Void,Void,Void> {
     }
 
     @Override
-    protected Void doInBackground(Void... params) {
+    protected Void doInBackground(String... params) {
 
         try {
 
                 URL url = new URL(duongdan);
-                String param = "chieurong=" + URLEncoder.encode(edWidth, "utf-8") + "&chieudai=" +URLEncoder.encode(edLength,"utf-8");
+                String param = "canh=" + URLEncoder.encode(params[0].toString(),"utf-8");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");

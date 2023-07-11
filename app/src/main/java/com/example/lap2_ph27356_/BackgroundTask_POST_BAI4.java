@@ -12,15 +12,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-public class BackgroundTask_POST_BAI3 extends AsyncTask<String,Void,Void> {
-    String duongdan = BAI3.SERVER_NAME;
+public class BackgroundTask_POST_BAI4 extends AsyncTask<String,Void,Void> {
+    String duongdan = Bai4.SERVER_NAME;
    TextView tvResult;
    String edCanh;
    String str;
    ProgressDialog pDiaLog;
    Context context;
 
-    public BackgroundTask_POST_BAI3(TextView tvResult, Context context) {
+    public BackgroundTask_POST_BAI4(TextView tvResult, Context context) {
         this.tvResult = tvResult;
         this.context = context;
     }
@@ -43,7 +43,11 @@ public class BackgroundTask_POST_BAI3 extends AsyncTask<String,Void,Void> {
         try {
 
                 URL url = new URL(duongdan);
-                String param = "canh=" + URLEncoder.encode(params[0].toString(),"utf-8");
+                String param = "a=" + URLEncoder.encode(params[0].toString(),"utf-8")+
+                        "&b=" +URLEncoder.encode(params[1].toString(),"utf-8")+
+                        "&c=" +URLEncoder.encode(params[2].toString(),"utf-8");
+
+
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setDoOutput(true);
                 urlConnection.setRequestMethod("POST");
